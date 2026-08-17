@@ -27,8 +27,8 @@ export const articles: Article[] = [
 
 export type Report = { id: string; label: string; title: string; date: string; size: string; description: string; href: string; };
 export const reports: Report[] = [
-  { id: "operating-review", label: "Operating review", title: "PorTech Systems operating review — sample edition", date: "August 2026", size: "220 KB PDF", description: "A clearly marked demonstration report showing the intended visual and download treatment for approved corporate materials.", href: "/manus-storage/portech-operating-review-sample_5fc4b120.pdf" },
-  { id: "governance-overview", label: "Governance overview", title: "Governance principles — sample edition", date: "August 2026", size: "198 KB PDF", description: "A clearly marked demonstration document for the PorTech investor and press library structure.", href: "/manus-storage/portech-governance-overview-sample_81701cf0.pdf" },
+  { id: "operating-review", label: "Operating review", title: "PorTech Systems operating review — sample edition", date: "August 2026", size: "220 KB PDF", description: "A clearly marked demonstration report showing the intended visual and download treatment for approved corporate materials.", href: "/reports/portech-operating-review-sample.pdf" },
+  { id: "governance-overview", label: "Governance overview", title: "Governance principles — sample edition", date: "August 2026", size: "198 KB PDF", description: "A clearly marked demonstration document for the PorTech investor and press library structure.", href: "/reports/portech-governance-overview-sample.pdf" },
 ];
 
 export const searchIndex = [
