@@ -1,42 +1,18 @@
+/** Cobalt Signal Architecture: the root holds a persistent navigation shell and a command-like global search across all corporate routes. */
+import { useCallback, useState } from "react";
+import { Route, Switch } from "wouter";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
+import { SiteShell } from "./components/SiteShell";
+import { SearchOverlay } from "./components/SearchOverlay";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-
-
-function Router() {
-  return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
-
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
-function App() {
-  return (
-    <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
-  );
-}
-
-export default App;
+import Products from "./pages/Products";
+import Industries from "./pages/Industries";
+import Insights from "./pages/Insights";
+import CaseStudies from "./pages/CaseStudies";
+import InvestorsPress from "./pages/InvestorsPress";
+import NotFound from "./pages/NotFound";
+function Router() { return <Switch><Route path="/" component={Home} /><Route path="/products" component={Products} /><Route path="/industries" component={Industries} /><Route path="/insights" component={Insights} /><Route path="/case-studies" component={CaseStudies} /><Route path="/investors-press" component={InvestorsPress} /><Route component={NotFound} /></Switch>; }
+export default function App() { const [searchOpen, setSearchOpen] = useState(false); const openSearch = useCallback(() => setSearchOpen(true), []); return <ErrorBoundary><ThemeProvider defaultTheme="dark"><TooltipProvider><SiteShell onOpenSearch={openSearch}><Router /></SiteShell><SearchOverlay open={searchOpen} onOpenChange={setSearchOpen} /><Toaster /></TooltipProvider></ThemeProvider></ErrorBoundary>; }
